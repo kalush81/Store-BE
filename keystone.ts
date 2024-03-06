@@ -7,6 +7,7 @@ import {
 
 import { createAuth } from '@keystone-next/auth';
 import { User } from './schemas/User';
+import { Product } from './schemas/Product';
 
 const databaseURL = process.env.DATABASE_URL;
 
@@ -38,11 +39,12 @@ export default withAuth(
     },
     lists: createSchema({
       User,
+      Product,
     }),
     ui: {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       isAccessAllowed: ({ session }) => {
         console.log(session);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         return !!session?.data;
       },
     },
